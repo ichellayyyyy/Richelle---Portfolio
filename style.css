@@ -2314,3 +2314,13 @@ footer {
     }
 }
 
+.toolkit-slider * {
+    touch-action: pan-y; /* Pinapayagan pa rin ang vertical scroll ng page */
+}
+
+.toolkit-visual, 
+.toolkit-content, 
+.toolkit-slide {
+    user-select: none; /* Pigilan ang pag-highlight sa text habang nag-e-swipe */
+    -webkit-user-select: none;
+}
