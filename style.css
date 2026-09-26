@@ -2222,55 +2222,8 @@ footer {
 }
 
 
-/* TABLET */
-
-@media (max-width: 900px) {
-
-    .toolkit-slide {
-        grid-template-columns: 1fr;
-        gap: 25px;
-        padding: 50px 30px;
-        text-align: center;
-    }
-
-    .toolkit-visual {
-        height: 180px;
-    }
-
-    .toolkit-content {
-        max-width: 100%;
-    }
-
-    .toolkit-tags {
-        justify-content: center;
-    }
-
-    .toolkit-number {
-        top: 20px;
-        right: 25px;
-    }
-
-}
-
-
-
-/* REDUCED MOTION */
-
-@media (prefers-reduced-motion: reduce) {
-
-    .toolkit-slide {
-        animation: none;
-    }
-
-    .chart-bars span,
-    .thinking-dot {
-        animation: none;
-    }
-
-}
-
 /* =========================================
-   PROJECT TECH TAGS & MOBILE FIX
+   PROJECT TECH TAGS (NON-MEDIA QUERY)
 ========================================= */
 
 .project-tags {
@@ -2293,34 +2246,76 @@ footer {
     white-space: nowrap;
 }
 
-@media (max-width: 700px) {
+/* REDUCED MOTION ACCESSIBILITY */
 
-    .project-card {
-        padding: 20px;
-    }
-
-    .project-tags {
-        gap: 6px;
-        margin-top: 12px;
-    }
-
-    .project-tags span {
-        padding: 4px 9px;
-        font-size: 10.5px;
-    }
-
-    .toolkit-arrow {
-        display: none;
+@media (prefers-reduced-motion: reduce) {
+    .toolkit-slide,
+    .chart-bars span,
+    .thinking-dot {
+        animation: none;
     }
 }
 
+/* =========================================
+   RESPONSIVE BREAKPOINTS (TABLET & MOBILE)
+========================================= */
+
+/* TABLET ONLY (701px hanggang 900px) - Hindi maaapektuhan ang Desktop */
+@media (max-width: 900px) and (min-width: 701px) {
+    .toolkit-slide.active {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 50px 30px;
+        text-align: center;
+    }
+
+    .toolkit-visual { height: 180px; }
+    .toolkit-content { max-width: 100%; }
+    .toolkit-tags { justify-content: center; }
+    .toolkit-number { top: 20px; right: 25px; }
+}
+
+/* MOBILE ONLY (700px pababa) - Dito lang gagawin ang Touch/Swipe Scroll */
+@media (max-width: 700px) {
+    .project-card { padding: 20px; }
+    .project-tags { gap: 6px; margin-top: 12px; }
+    .project-tags span { padding: 4px 9px; font-size: 10.5px; }
+
+    /* Itago ang arrows sa mobile */
+    .toolkit-arrow { display: none !important; }
+
+    /* Gawing Native Horizontal Swipe Viewport */
+    .toolkit-viewport {
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+
+    .toolkit-slide {
+        display: flex !important;
+        flex-direction: column;
+        min-width: 100% !important;
+        padding: 40px 20px !important;
+        text-align: center;
+        scroll-snap-align: center !important;
+        scroll-snap-stop: always !important;
+    }
+
+    .toolkit-tags { justify-content: center; }
+    .toolkit-viewport::-webkit-scrollbar { display: none; }
+}
+
+/* Touch Safety Controls */
 .toolkit-slider * {
-    touch-action: pan-y; /* Pinapayagan pa rin ang vertical scroll ng page */
+    touch-action: pan-y;
 }
 
 .toolkit-visual, 
 .toolkit-content, 
 .toolkit-slide {
-    user-select: none; /* Pigilan ang pag-highlight sa text habang nag-e-swipe */
+    user-select: none;
     -webkit-user-select: none;
 }
+
