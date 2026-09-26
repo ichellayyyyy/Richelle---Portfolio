@@ -2282,25 +2282,26 @@ footer {
     .project-tags span { padding: 4px 9px; font-size: 10.5px; }
 
     /* Itago ang arrows sa mobile */
-    .toolkit-arrow { display: none !important; }
+    .toolkit-arrow { display: none ; }
 
     /* Gawing Native Horizontal Swipe Viewport */
     .toolkit-viewport {
-        display: flex !important;
-        overflow-x: auto !important;
-        scroll-snap-type: x mandatory !important;
+        display: flex ;
+        overflow-x: auto ;
+        scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         scroll-behavior: smooth;
+       .touch-action: pan-x pan-y;
     }
 
     .toolkit-slide {
-        display: flex !important;
+        display: flex ;
         flex-direction: column;
-        min-width: 100% !important;
-        padding: 40px 20px !important;
+        min-width: 100% ;
+        padding: 40px 20px ;
         text-align: center;
-        scroll-snap-align: center !important;
-        scroll-snap-stop: always !important;
+        scroll-snap-align: center ;
+        scroll-snap-stop: always ;
     }
 
     .toolkit-tags { justify-content: center; }
@@ -2309,7 +2310,7 @@ footer {
 
 /* Touch Safety Controls */
 .toolkit-slider * {
-    touch-action: pan-y;
+    touch-action: auto;
 }
 
 .toolkit-visual, 
