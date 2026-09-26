@@ -1735,8 +1735,8 @@ footer {
     display: flex;
     align-items: center;
     gap: 16px;
-    width: 900%;
-    max-width: 1000PX;
+    width: 100%;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -2229,7 +2229,7 @@ footer {
     .toolkit-slide {
         grid-template-columns: 1fr;
         gap: 25px;
-        padding: 50px 45px;
+        padding: 50px 30px;
         text-align: center;
     }
 
@@ -2255,37 +2255,52 @@ footer {
 
 /* MOBILE */
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+
+    html, body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
 
     .toolkit-slider {
-        gap: 8px;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
     }
 
     .toolkit-viewport {
-        min-height: 500px;
+        min-height: auto;
+        width: 100%;
     }
 
     .toolkit-slide {
-        min-height: 500px;
-        padding: 50px 25px 35px;
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding: 40px 20px 30px;
+        gap: 20px;
+        text-align: center;
     }
 
     .toolkit-visual {
-        height: 180px;
+        height: 160px;
+        width: 100%;
     }
 
     .toolkit-arrow {
-        width: 40px;
-        height: 40px;
+        display: none; /* Hide side arrows on mobile to prevent overflow */
     }
 
     .toolkit-content h3 {
-        font-size: 30px;
+        font-size: 26px;
     }
 
     .toolkit-content p {
         font-size: 14px;
-        line-height: 1.7;
+        line-height: 1.6;
+    }
+
+    .toolkit-tags {
+        justify-content: center;
     }
 
     .toolkit-tags span {
@@ -2308,83 +2323,4 @@ footer {
         animation: none;
     }
 
-}
-
-
-/* MOBILE RESPONSIVE STYLES */
-@media (max-width: 768px) {
-    .toolkit-card {
-        flex-direction: column;
-        padding: 24px;
-        text-align: center;
-    }
-
-    .toolkit-card-image {
-        width: 100%;
-        max-width: 250px;
-        margin: 0 auto;
-    }
-
-    .toolkit-card-content {
-        align-items: center;
-    }
-
-    .toolkit-tags {
-        justify-content: center;
-    }
-
-    .toolkit-slider {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .toolkit-prev,
-    .toolkit-next {
-        position: static;
-    }
-
-    .toolkit-controls-mobile {
-        display: flex;
-        gap: 16px;
-        justify-content: center;
-    }
-}
-
-
-@media screen and (max-width: 768px) {
-    /* 1. Iwasan ang pag-overflow sa buong screen */
-    html, body {
-        overflow-x: hidden;
-        max-width: 100%;
-    }
-
-    .skills-card,
-    .toolkit-card,
-    .card {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-        box-sizing: border-box !important;
-        padding: 20px 15px !important;
-        margin: 0 auto !important;
-    }
-
-    .skills-card-content,
-    .toolkit-card-content {
-        flex-direction: column !important;
-        width: 100% !important;
-        text-align: center !important;
-    }
-
-    .skills-card p,
-    .toolkit-card p {
-        font-size: 0.9rem !important;
-        word-wrap: break-word !important;
-    }
-
-    .tags-container,
-    .toolkit-tags {
-        justify-content: center !important;
-        flex-wrap: wrap !important;
-    }
 }
