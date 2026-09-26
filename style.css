@@ -2346,3 +2346,50 @@ footer {
         transform: scale(0.95);
     }
 }
+
+
+
+
+
+
+
+
+@media (max-width: 700px) {
+    /* Siguraduhing pantay-pantay ang LAHAT ng slide sa mobile */
+    .toolkit-viewport .toolkit-slide {
+        display: flex !important;
+        flex-direction: column !important;
+        grid-template-columns: none !important; /* Patayin ang desktop grid */
+        align-items: center !important;
+        justify-content: flex-start !important;
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 30px 15px !important;
+        text-align: center !important;
+    }
+
+    /* I-center at i-contain ang visual area */
+    .toolkit-visual {
+        width: 100% !important;
+        max-width: 280px !important;
+        height: 180px !important;
+        margin: 0 auto 15px auto !important;
+    }
+
+    /* I-contain ang text content para hindi lumampas */
+    .toolkit-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* I-wrap at i-center ang mga tags sa ilalim */
+    .toolkit-tags {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
+}
