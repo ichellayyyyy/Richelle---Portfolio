@@ -2275,40 +2275,11 @@ footer {
     .toolkit-number { top: 20px; right: 25px; }
 }
 
-/* MOBILE ONLY (700px pababa) - Dito lang gagawin ang Touch/Swipe Scroll */
-@media (max-width: 700px) {
-    .project-card { padding: 20px; }
-    .project-tags { gap: 6px; margin-top: 12px; }
-    .project-tags span { padding: 4px 9px; font-size: 10.5px; }
-
-    /* Itago ang arrows sa mobile */
-    .toolkit-arrow { display: none ; }
-
-    /* Gawing Native Horizontal Swipe Viewport */
-    .toolkit-viewport {
-        display: flex ;
-        overflow-x: auto ;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scroll-behavior: smooth;
-       .touch-action: pan-x pan-y;
-    }
-
-    .toolkit-slide {
-        display: flex ;
-        flex-direction: column;
-        min-width: 100% ;
-        padding: 40px 20px ;
-        text-align: center;
-        scroll-snap-align: center ;
-        scroll-snap-stop: always ;
-    }
-
-    .toolkit-tags { justify-content: center; }
-    .toolkit-viewport::-webkit-scrollbar { display: none; }
+/* Touch Safety Controls & Default Mobile Button State */
+.mobile-btn {
+    display: none;
 }
 
-/* Touch Safety Controls */
 .toolkit-slider * {
     touch-action: auto;
 }
@@ -2320,15 +2291,32 @@ footer {
     -webkit-user-select: none;
 }
 
-/* Default: Itago sa Desktop */
-.mobile-btn {
-    display: none;
-}
-
-/* Ipakita lamang sa Mobile (700px pababa) */
+/* =========================================
+   CLEAN MOBILE ONLY BREAKPOINT (700px Pababa)
+========================================= */
 @media (max-width: 700px) {
+    .project-card { 
+        padding: 20px; 
+    }
+    
+    .project-tags { 
+        gap: 6px; 
+        margin-top: 12px; 
+    }
+    
+    .project-tags span { 
+        padding: 4px 9px; 
+        font-size: 10.5px; 
+    }
+
+    /* Itago ang Desktop Arrows */
+    .toolkit-arrow { 
+        display: none !important; 
+    }
+
+    /* Ipakita ang Mobile Prev/Next Buttons sa Baba */
     .mobile-btn {
-        display: inline-flex;
+        display: inline-flex !important;
         align-items: center;
         justify-content: center;
         padding: 8px 14px;
@@ -2345,21 +2333,26 @@ footer {
         background: #0d2c54;
         transform: scale(0.95);
     }
-}
 
+    /* Viewport & Horizontal Scroll */
+    .toolkit-viewport {
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        touch-action: pan-x pan-y !important;
+    }
 
+    .toolkit-viewport::-webkit-scrollbar { 
+        display: none; 
+    }
 
-
-
-
-
-
-@media (max-width: 700px) {
-    /* Siguraduhing pantay-pantay ang LAHAT ng slide sa mobile */
+    /* Strictly Force Vertical Stacking on ALL Slides */
     .toolkit-viewport .toolkit-slide {
         display: flex !important;
         flex-direction: column !important;
-        grid-template-columns: none !important; /* Patayin ang desktop grid */
+        grid-template-columns: none !important;
         align-items: center !important;
         justify-content: flex-start !important;
         width: 100% !important;
@@ -2368,9 +2361,11 @@ footer {
         box-sizing: border-box !important;
         padding: 30px 15px !important;
         text-align: center !important;
+        scroll-snap-align: center !important;
+        scroll-snap-stop: always !important;
     }
 
-    /* I-center at i-contain ang visual area */
+    /* Visual Box Fix */
     .toolkit-visual {
         width: 100% !important;
         max-width: 280px !important;
@@ -2378,14 +2373,14 @@ footer {
         margin: 0 auto 15px auto !important;
     }
 
-    /* I-contain ang text content para hindi lumampas */
+    /* Text Content Containment */
     .toolkit-content {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box !important;
     }
 
-    /* I-wrap at i-center ang mga tags sa ilalim */
+    /* Center Tags */
     .toolkit-tags {
         display: flex !important;
         flex-wrap: wrap !important;
