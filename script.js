@@ -339,3 +339,37 @@ function handleToolkitSwipe() {
         if (prevBtn) prevBtn.click();
     }
 }
+
+/* =====================================================
+   TOUCH / SWIPE FOR ANALYTICS TOOLKIT SLIDER
+===================================================== */
+
+const toolkitViewport = document.querySelector(".toolkit-viewport");
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+if (toolkitViewport) {
+    toolkitViewport.addEventListener("touchstart", (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    toolkitViewport.addEventListener("touchend", (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleToolkitSwipe();
+    }, { passive: true });
+}
+
+function handleToolkitSwipe() {
+    const swipeThreshold = 40; // Haba ng swipe sa pixels bago lumipat
+
+    // Swipe Left -> Next Slide
+    if (touchStartX - touchEndX > swipeThreshold) {
+        showToolkitSlide(currentToolkitSlide + 1);
+    }
+
+    // Swipe Right -> Previous Slide
+    if (touchEndX - touchStartX > swipeThreshold) {
+        showToolkitSlide(currentToolkitSlide - 1);
+    }
+}
