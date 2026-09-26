@@ -2324,3 +2324,30 @@ footer {
     }
 
 }
+
+
+/* =========================================
+   PROJECT TECH TAGS 
+========================================= */
+
+.project-card p + p,
+.project-tech,
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.project-card p:last-of-type span,
+.project-tech span,
+.project-tags span {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--blue);
+    background: var(--blue-light);
+    border: 1px solid var(--blue-soft);
+    border-radius: 6px;
+}
