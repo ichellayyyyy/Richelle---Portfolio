@@ -300,3 +300,42 @@ document.addEventListener("keydown", (event) => {
 
 });
 
+
+
+// =========================================
+// TOUCH / SWIPE FOR ANALYTICS TOOLKIT SLIDER
+// =========================================
+
+const toolkitViewport = document.querySelector('.toolkit-viewport');
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+if (toolkitViewport) {
+    // Kapag sinimulang hawakan ang slider box
+    toolkitViewport.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    // Kapag binitiwan na ang swipe sa screen
+    toolkitViewport.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleToolkitSwipe();
+    }, { passive: true });
+}
+
+function handleToolkitSwipe() {
+    const swipeThreshold = 40; // Haba ng swipe sa pixels bago lumipat
+
+    // Swiped Left -> Next Slide
+    if (touchStartX - touchEndX > swipeThreshold) {
+        const nextBtn = document.getElementById('toolkitNext');
+        if (nextBtn) nextBtn.click();
+    }
+
+    // Swiped Right -> Previous Slide
+    if (touchEndX - touchStartX > swipeThreshold) {
+        const prevBtn = document.getElementById('toolkitPrev');
+        if (prevBtn) prevBtn.click();
+    }
+}
