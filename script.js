@@ -171,13 +171,13 @@ setInterval(() => {
 
 const profileImage = document.querySelector(".profile-image");
 
-if (profileImage) {
-    profileImage.addEventListener("error", () => {
-        console.error(
-            "Profile image could not be loaded. Check that assets/profile.jpg exists."
-        );
-    });
-}
+profileImage.addEventListener("error", () => {
+
+    console.error(
+        "Profile image could not be loaded. Check that assets/profile.jpg exists."
+    );
+
+});
 
 
 /* =====================================================
@@ -237,12 +237,10 @@ function showToolkitSlide(index) {
 
     /* Update counter */
 
-    if (toolkitCounter) {
-        toolkitCounter.textContent =
-            String(currentToolkitSlide + 1).padStart(2, "0")
-            + " / "
-            + String(toolkitSlides.length).padStart(2, "0");
-    }
+    toolkitCounter.textContent =
+        String(currentToolkitSlide + 1).padStart(2, "0")
+        + " / "
+        + String(toolkitSlides.length).padStart(2, "0");
 }
 
 
@@ -303,45 +301,6 @@ document.addEventListener("keydown", (event) => {
 });
 
 
-/* =====================================================
-   TOUCH / SWIPE FOR ANALYTICS TOOLKIT SLIDER (FIXED)
-===================================================== */
-
-const toolkitSlider = document.querySelector(".toolkit-slider");
-
-let touchStartX = 0;
-let touchStartY = 0;
-let touchEndX = 0;
-let touchEndY = 0;
-
-if (toolkitSlider) {
-    // Kapag hinawakan ang slider
-    toolkitSlider.addEventListener("touchstart", (e) => {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-    }, { passive: true });
-
-    // Kapag binitiwan ang slider
-    toolkitSlider.addEventListener("touchend", (e) => {
-        touchEndX = e.changedTouches[0].clientX;
-        touchEndY = e.changedTouches[0].clientY;
-        handleToolkitSwipe();
-    }, { passive: true });
-}
-
-function handleToolkitSwipe() {
-    const xDiff = touchStartX - touchEndX;
-    const yDiff = touchStartY - touchEndY;
-    const swipeThreshold = 30; // Minimum distance para mag-trigger
-
-    // Tiyakin na horizontal swipe ito at hindi vertical scroll
-    if (Math.abs(xDiff) > Math.abs(yDiff) && Math.abs(xDiff) > swipeThreshold) {
-        if (xDiff > 0) {
-            // Swiped Left -> Next
-            showToolkitSlide(currentToolkitSlide + 1);
-        } else {
-            // Swiped Right -> Previous
-            showToolkitSlide(currentToolkitSlide - 1);
         }
     }
 }
