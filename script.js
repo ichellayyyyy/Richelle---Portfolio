@@ -193,9 +193,9 @@ if (yearElement) {
 
 }
 
-/* =====================================================
-   ANALYTICS TOOLKIT SLIDER (DESKTOP & MOBILE SYNC)
-===================================================== */
+/* =========================================
+   ANALYTICS TOOLKIT SLIDER (DESKTOP & MOBILE)
+========================================= */
 
 const toolkitSlides = document.querySelectorAll(".toolkit-slide");
 const toolkitDots = document.querySelectorAll(".toolkit-dot");
@@ -216,26 +216,30 @@ function showToolkitSlide(index) {
 
     currentToolkitSlide = index;
 
-    // Para sa Desktop / Web View
+    // Desktop/Web View Logic
     toolkitSlides.forEach((slide, i) => {
-        slide.classList.toggle("active", i === currentToolkitSlide);
+        if (i === currentToolkitSlide) {
+            slide.classList.add("active");
+        } else {
+            slide.classList.remove("active");
+        }
     });
 
-    // Para sa Mobile View (I-scroll pabalik/papadpad sa tamang slide)
+    // Mobile View Scroll Logic
     if (toolkitViewport && window.innerWidth <= 700) {
         const slideWidth = toolkitSlides[0].offsetWidth;
         toolkitViewport.scrollTo({
             left: slideWidth * currentToolkitSlide,
-            behavior: 'smooth'
+            behavior: "smooth"
         });
     }
 
-    /* Update Dots */
+    // Update Dots
     toolkitDots.forEach((dot, i) => {
         dot.classList.toggle("active", i === currentToolkitSlide);
     });
 
-    /* Update Counter */
+    // Update Counter
     if (toolkitCounter) {
         toolkitCounter.textContent =
             String(currentToolkitSlide + 1).padStart(2, "0") +
@@ -244,35 +248,38 @@ function showToolkitSlide(index) {
     }
 }
 
-/* ARROW BUTTONS (WEB / DESKTOP) */
+// Click Arrows (Desktop / Laptop View)
 if (toolkitNext) {
-    toolkitNext.addEventListener("click", () => {
+    toolkitNext.addEventListener("click", (e) => {
+        e.preventDefault();
         showToolkitSlide(currentToolkitSlide + 1);
     });
 }
 
 if (toolkitPrev) {
-    toolkitPrev.addEventListener("click", () => {
+    toolkitPrev.addEventListener("click", (e) => {
+        e.preventDefault();
         showToolkitSlide(currentToolkitSlide - 1);
     });
 }
 
-/* DOT NAVIGATION */
+// Click Dots
 toolkitDots.forEach((dot, index) => {
     dot.addEventListener("click", () => {
         showToolkitSlide(index);
     });
 });
 
-/* DETECT MOBILE SCROLL/SWIPE TO UPDATE DOTS & COUNTER */
+// Mobile Swipe Monitoring (Auto Updates dots and counter when scrolling)
 if (toolkitViewport) {
     toolkitViewport.addEventListener("scroll", () => {
         if (window.innerWidth <= 700) {
             const slideWidth = toolkitSlides[0].offsetWidth;
             const newIndex = Math.round(toolkitViewport.scrollLeft / slideWidth);
+
             if (newIndex !== currentToolkitSlide && newIndex >= 0 && newIndex < toolkitSlides.length) {
                 currentToolkitSlide = newIndex;
-                
+
                 toolkitDots.forEach((dot, i) => {
                     dot.classList.toggle("active", i === currentToolkitSlide);
                 });
@@ -288,7 +295,5 @@ if (toolkitViewport) {
     }, { passive: true });
 }
 
-
-        }
-    }
-}
+// Initialize First Slide
+showToolkitSlide(0);
