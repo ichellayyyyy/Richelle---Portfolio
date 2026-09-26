@@ -2253,62 +2253,6 @@ footer {
 }
 
 
-/* MOBILE */
-
-@media (max-width: 768px) {
-
-    html, body {
-        overflow-x: hidden;
-        max-width: 100%;
-    }
-
-    .toolkit-slider {
-        flex-direction: column;
-        gap: 15px;
-        width: 100%;
-    }
-
-    .toolkit-viewport {
-        min-height: auto;
-        width: 100%;
-    }
-
-    .toolkit-slide {
-        grid-template-columns: 1fr;
-        min-height: auto;
-        padding: 40px 20px 30px;
-        gap: 20px;
-        text-align: center;
-    }
-
-    .toolkit-visual {
-        height: 160px;
-        width: 100%;
-    }
-
-    .toolkit-arrow {
-        display: none; /* Hide side arrows on mobile to prevent overflow */
-    }
-
-    .toolkit-content h3 {
-        font-size: 26px;
-    }
-
-    .toolkit-content p {
-        font-size: 14px;
-        line-height: 1.6;
-    }
-
-    .toolkit-tags {
-        justify-content: center;
-    }
-
-    .toolkit-tags span {
-        font-size: 11px;
-    }
-
-}
-
 
 /* REDUCED MOTION */
 
@@ -2325,13 +2269,10 @@ footer {
 
 }
 
-
 /* =========================================
-   PROJECT TECH TAGS 
+   PROJECT TECH TAGS & MOBILE FIX
 ========================================= */
 
-.project-card p + p,
-.project-tech,
 .project-tags {
     display: flex;
     flex-wrap: wrap;
@@ -2339,15 +2280,37 @@ footer {
     margin-top: 15px;
 }
 
-.project-card p:last-of-type span,
-.project-tech span,
 .project-tags span {
-    display: inline-block;
-    padding: 4px 10px;
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
     font-size: 11px;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--blue);
     background: var(--blue-light);
     border: 1px solid var(--blue-soft);
     border-radius: 6px;
+    white-space: nowrap;
 }
+
+@media (max-width: 700px) {
+
+    .project-card {
+        padding: 20px;
+    }
+
+    .project-tags {
+        gap: 6px;
+        margin-top: 12px;
+    }
+
+    .project-tags span {
+        padding: 4px 9px;
+        font-size: 10.5px;
+    }
+
+    .toolkit-arrow {
+        display: none;
+    }
+}
+
