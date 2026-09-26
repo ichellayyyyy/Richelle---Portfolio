@@ -2310,3 +2310,42 @@ footer {
 
 }
 
+
+/* MOBILE RESPONSIVE STYLES */
+@media (max-width: 768px) {
+    .toolkit-card {
+        flex-direction: column;
+        padding: 24px;
+        text-align: center;
+    }
+
+    .toolkit-card-image {
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
+    }
+
+    .toolkit-card-content {
+        align-items: center;
+    }
+
+    .toolkit-tags {
+        justify-content: center;
+    }
+
+    .toolkit-slider {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .toolkit-prev,
+    .toolkit-next {
+        position: static;
+    }
+
+    .toolkit-controls-mobile {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+    }
+}
