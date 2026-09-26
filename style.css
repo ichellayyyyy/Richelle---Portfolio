@@ -2349,3 +2349,42 @@ footer {
         justify-content: center;
     }
 }
+
+
+@media screen and (max-width: 768px) {
+    /* 1. Iwasan ang pag-overflow sa buong screen */
+    html, body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+
+    .skills-card,
+    .toolkit-card,
+    .card {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+        padding: 20px 15px !important;
+        margin: 0 auto !important;
+    }
+
+    .skills-card-content,
+    .toolkit-card-content {
+        flex-direction: column !important;
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    .skills-card p,
+    .toolkit-card p {
+        font-size: 0.9rem !important;
+        word-wrap: break-word !important;
+    }
+
+    .tags-container,
+    .toolkit-tags {
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+    }
+}
