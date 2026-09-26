@@ -141,6 +141,16 @@ counters.forEach(counter => {
     counterObserver.observe(counter);
 });
 
+const mobilePrev = document.getElementById("toolkitMobilePrev");
+const mobileNext = document.getElementById("toolkitMobileNext");
+
+if (mobileNext) {
+    mobileNext.addEventListener("click", () => showToolkitSlide(currentToolkitSlide + 1));
+}
+
+if (mobilePrev) {
+    mobilePrev.addEventListener("click", () => showToolkitSlide(currentToolkitSlide - 1));
+}
 
 /* =====================================================
    DYNAMIC BAR ANIMATION
