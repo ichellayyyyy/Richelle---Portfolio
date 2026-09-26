@@ -2320,3 +2320,29 @@ footer {
     -webkit-user-select: none;
 }
 
+/* Default: Itago sa Desktop */
+.mobile-btn {
+    display: none;
+}
+
+/* Ipakita lamang sa Mobile (700px pababa) */
+@media (max-width: 700px) {
+    .mobile-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 14px;
+        background: #123d73;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .mobile-btn:active {
+        background: #0d2c54;
+        transform: scale(0.95);
+    }
+}
