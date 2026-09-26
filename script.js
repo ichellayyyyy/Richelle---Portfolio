@@ -193,67 +193,63 @@ if (yearElement) {
 
 }
 
-/* =========================================
-   ANALYTICS TOOLKIT SLIDER
-========================================= */
+/* =====================================================
+   ANALYTICS TOOLKIT SLIDER (DESKTOP & MOBILE SYNC)
+===================================================== */
 
 const toolkitSlides = document.querySelectorAll(".toolkit-slide");
 const toolkitDots = document.querySelectorAll(".toolkit-dot");
 const toolkitPrev = document.getElementById("toolkitPrev");
 const toolkitNext = document.getElementById("toolkitNext");
 const toolkitCounter = document.getElementById("toolkitCounter");
+const toolkitViewport = document.querySelector(".toolkit-viewport");
 
 let currentToolkitSlide = 0;
 
-
-/* SHOW SLIDE */
-
 function showToolkitSlide(index) {
-
     if (index < 0) {
         index = toolkitSlides.length - 1;
     }
-
     if (index >= toolkitSlides.length) {
         index = 0;
     }
 
     currentToolkitSlide = index;
 
-
-    /* Hide all slides */
-
+    // Para sa Desktop / Web View
     toolkitSlides.forEach((slide, i) => {
         slide.classList.toggle("active", i === currentToolkitSlide);
     });
 
+    // Para sa Mobile View (I-scroll pabalik/papadpad sa tamang slide)
+    if (toolkitViewport && window.innerWidth <= 700) {
+        const slideWidth = toolkitSlides[0].offsetWidth;
+        toolkitViewport.scrollTo({
+            left: slideWidth * currentToolkitSlide,
+            behavior: 'smooth'
+        });
+    }
 
-    /* Update dots */
-
+    /* Update Dots */
     toolkitDots.forEach((dot, i) => {
         dot.classList.toggle("active", i === currentToolkitSlide);
     });
 
-
-    /* Update counter */
-
-    toolkitCounter.textContent =
-        String(currentToolkitSlide + 1).padStart(2, "0")
-        + " / "
-        + String(toolkitSlides.length).padStart(2, "0");
+    /* Update Counter */
+    if (toolkitCounter) {
+        toolkitCounter.textContent =
+            String(currentToolkitSlide + 1).padStart(2, "0") +
+            " / " +
+            String(toolkitSlides.length).padStart(2, "0");
+    }
 }
 
-
-/* NEXT */
-
+/* ARROW BUTTONS (WEB / DESKTOP) */
 if (toolkitNext) {
     toolkitNext.addEventListener("click", () => {
         showToolkitSlide(currentToolkitSlide + 1);
     });
 }
-
-
-/* PREVIOUS */
 
 if (toolkitPrev) {
     toolkitPrev.addEventListener("click", () => {
@@ -261,44 +257,36 @@ if (toolkitPrev) {
     });
 }
 
-
 /* DOT NAVIGATION */
-
 toolkitDots.forEach((dot, index) => {
-
     dot.addEventListener("click", () => {
         showToolkitSlide(index);
     });
-
 });
 
+/* DETECT MOBILE SCROLL/SWIPE TO UPDATE DOTS & COUNTER */
+if (toolkitViewport) {
+    toolkitViewport.addEventListener("scroll", () => {
+        if (window.innerWidth <= 700) {
+            const slideWidth = toolkitSlides[0].offsetWidth;
+            const newIndex = Math.round(toolkitViewport.scrollLeft / slideWidth);
+            if (newIndex !== currentToolkitSlide && newIndex >= 0 && newIndex < toolkitSlides.length) {
+                currentToolkitSlide = newIndex;
+                
+                toolkitDots.forEach((dot, i) => {
+                    dot.classList.toggle("active", i === currentToolkitSlide);
+                });
 
-/* KEYBOARD NAVIGATION */
-
-document.addEventListener("keydown", (event) => {
-
-    const toolkitSection = document.getElementById("skills");
-
-    if (!toolkitSection) return;
-
-    const rect = toolkitSection.getBoundingClientRect();
-
-    const sectionIsVisible =
-        rect.top < window.innerHeight &&
-        rect.bottom > 0;
-
-    if (!sectionIsVisible) return;
-
-
-    if (event.key === "ArrowRight") {
-        showToolkitSlide(currentToolkitSlide + 1);
-    }
-
-    if (event.key === "ArrowLeft") {
-        showToolkitSlide(currentToolkitSlide - 1);
-    }
-
-});
+                if (toolkitCounter) {
+                    toolkitCounter.textContent =
+                        String(currentToolkitSlide + 1).padStart(2, "0") +
+                        " / " +
+                        String(toolkitSlides.length).padStart(2, "0");
+                }
+            }
+        }
+    }, { passive: true });
+}
 
 
         }
